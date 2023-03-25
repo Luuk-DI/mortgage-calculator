@@ -14,7 +14,12 @@
     </div>
   </header>
 
-  <main class="flex flex-col md:max-w-4xl mx-auto p-8 m-8 border border-slate-200 bg-slate-100 rounded-md">
+  <main
+    class="
+      flex flex-col md:max-w-4xl mx-auto p-8 m-8
+      md:border border-y border-slate-200 md:rounded-md bg-slate-100
+    "
+  >
     <div class="flex flex-row justify-evenly flex-wrap gap-y-8">
       <div class="bg-slate-50 p-4 rounded-md w-min sm:w-max">
         <h2>Selling</h2>
