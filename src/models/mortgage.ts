@@ -55,7 +55,7 @@ export class Mortgage {
   }
 
   private updateRates() {
-    if (this.loan === 0) {
+    if (this.loan <= 0) {
       this.monthly.value = 0;
       this.nettMonthly.value = 0;
     } else {
