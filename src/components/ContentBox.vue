@@ -4,7 +4,7 @@
       <slot name="title"></slot>
     </h2>
 
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col">
       <slot></slot>
     </div>
   </div>

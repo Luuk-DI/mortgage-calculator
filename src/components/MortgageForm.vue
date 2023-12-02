@@ -38,7 +38,9 @@
     <div class="grow"></div>
 
     <div>Rate: €{{ mortgage.monthly }}</div>
-    <div>Nett rate: €{{ mortgage.nettMonthly }}</div>
+    <div :class="[highlightNett ? 'font-semibold' : '']">
+      Nett rate: €{{ mortgage.nettMonthly }}
+    </div>
   </div>
 </template>
 
@@ -51,6 +53,7 @@ defineProps<{
   disableLoan?: boolean;
   disableRate?: boolean;
   hideWoz?: boolean;
+  highlightNett?: boolean;
 }>();
 
 const emit = defineEmits<{

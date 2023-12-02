@@ -7,6 +7,7 @@ export interface SaveModel {
     woz: number;
   };
   sell: {
+    enabled: boolean;
     amount: number;
     agent: number;
     remainingMortgage: number;
@@ -32,6 +33,7 @@ export const defaultSaveValues: SaveModel = {
     woz: 250_000,
   },
   sell: {
+    enabled: true,
     amount: 250_000,
     agent: 1.5,
     remainingMortgage: 150_000,

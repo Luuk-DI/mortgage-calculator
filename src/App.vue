@@ -13,8 +13,26 @@
       md:border border-y border-slate-200 md:rounded-md bg-slate-100
     "
   >
+    <ContentBox>
+      <template #title>
+        Settings
+      </template>
+
+      <div class="flex items-center">
+        <label>Include selling</label>
+        <input
+          id="enable_selling"
+          v-model="sell.enabled"
+          type="checkbox"
+          class="ml-2"
+        />
+      </div>
+    </ContentBox>
+
+    <HorizontalSeparator />
+
     <div class="flex flex-row justify-evenly flex-wrap gap-8">
-      <ContentBox>
+      <ContentBox v-if="sell.enabled">
         <template #title>
           Selling
         </template>
@@ -134,7 +152,7 @@
     <HorizontalSeparator />
 
     <div class="flex justify-evenly flex-wrap gap-8">
-      <ContentBox>
+      <ContentBox v-if="sell.enabled">
         <template #title>
           Current mortgage
         </template>
@@ -150,7 +168,7 @@
 
       <ContentBox>
         <template #title>
-          New mortgages
+          {{ sell.enabled ? 'New mortgages' : 'New mortgage' }}
         </template>
 
         <ColumnRow>
@@ -158,11 +176,13 @@
             :mortgage="newMortgage"
             name="New"
             disable-loan
+            :highlight-nett="!sell.enabled"
             @update:rate="v => newMortgage.rate = v"
             @update:woz="v => newMortgage.woz = v"
           />
 
           <MortgageForm
+            v-if="sell.enabled"
             :mortgage="newCurrentMortgage"
             name="Renewed"
             disable-loan
@@ -171,11 +191,13 @@
           />
         </ColumnRow>
 
-        <HorizontalSeparator />
+        <template v-if="sell.enabled">
+          <HorizontalSeparator />
 
-        <div class="block font-semibold">
-          Total nett rate: €{{ totalNettRate }}
-        </div>
+          <div class="block font-semibold">
+            Total nett rate: €{{ totalNettRate }}
+          </div>
+        </template>
       </ContentBox>
     </div>
 
@@ -245,6 +267,10 @@ const buy = reactive(loadedData.buy);
 const saveTime = ref(loadedData.time == null ? null : new Date(loadedData.time));
 
 const sellCash = computed(() => {
+  if (!sell.enabled) {
+    return 0;
+  }
+
   const perc = (1 - sell.agent / 100);
   return sell.amount * perc - sell.remainingMortgage;
 });
@@ -256,7 +282,7 @@ watch(
     const buyPercentage = (1 + (buy.agent + 2) / 100);
 
     newMortgage.loan = Math.round(
-      buy.amount * buyPercentage - sellCash - remainingMortgage + buy.misc + buy.bank + buy.notary,
+      buy.amount * buyPercentage - sellCash - remainingMortgage * (sell.enabled ? 1 : 0) + buy.misc + buy.bank + buy.notary,
     );
   },
   { immediate: true },
