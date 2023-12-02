@@ -1,31 +1,50 @@
 /* eslint-env node */
 require('@rushstack/eslint-patch/modern-module-resolution');
 
+const stylistic = require('@stylistic/eslint-plugin');
+
+const customized = stylistic.configs.customize({
+  flat: false,
+  indent: 2,
+  quotes: 'single',
+  semi: true,
+  jsx: false,
+});
+
 module.exports = {
   root: true,
   env: {
-    node: true,
+    'node': true,
     'vue/setup-compiler-macros': true,
   },
+  plugins: [
+    '@stylistic',
+  ],
+  parser: 'vue-eslint-parser',
   extends: [
-    'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    '@vue/eslint-config-typescript/recommended'
+    'plugin:vue/vue3-recommended',
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: 'latest',
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
   },
   rules: {
-    '@typescript-eslint/indent': ['warn', 2, { 'SwitchCase': 1 }],
+    ...customized.rules,
+    '@stylistic/brace-style': ['warn', '1tbs'],
+    '@stylistic/member-delimiter-style': ['warn', { multiline: { delimiter: 'semi', requireLast: true } }],
+
     'no-trailing-spaces': 'warn',
     'quotes': ['warn', 'single'],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'semi': ['error', 'always'],
     'vue/component-name-in-template-casing': ['error', 'PascalCase', {
-      'registeredComponentsOnly': true,
-      'ignores': []
+      registeredComponentsOnly: true,
+      ignores: [],
     }],
+
     'vue/define-emits-declaration': 'error',
     'vue/define-macros-order': 'warn',
     'vue/define-props-declaration': 'error',

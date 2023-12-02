@@ -46,17 +46,17 @@
 import type { Mortgage } from '@/models/mortgage';
 
 defineProps<{
-  name: string,
-  mortgage: Mortgage,
-  disableLoan?: boolean,
-  disableRate?: boolean,
-  hideWoz?: boolean,
+  name: string;
+  mortgage: Mortgage;
+  disableLoan?: boolean;
+  disableRate?: boolean;
+  hideWoz?: boolean;
 }>();
 
 const emit = defineEmits<{
-  (e: 'update:loan', value: number): void,
-  (e: 'update:rate', value: number): void,
-  (e: 'update:woz', value: number): void,
+  'update:loan': [value: number];
+  'update:rate': [value: number];
+  'update:woz': [value: number];
 }>();
 
 const getNumberFromEvent = (event: Event) => {

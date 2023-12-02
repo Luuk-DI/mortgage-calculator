@@ -29,6 +29,7 @@ export class Mortgage {
   get loan() {
     return this._values.loan;
   }
+
   set loan(v) {
     this._values.loan = v;
     this.updateRates();
@@ -37,6 +38,7 @@ export class Mortgage {
   get rate() {
     return this._values.rate;
   }
+
   set rate(v) {
     this._values.rate = v;
     this.updateRates();
@@ -45,6 +47,7 @@ export class Mortgage {
   get woz() {
     return this._values.woz;
   }
+
   set woz(v) {
     this._values.woz = v;
     this.updateRates();

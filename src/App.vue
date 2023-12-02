@@ -228,7 +228,7 @@ const loadedData = loadSave();
 const currentMortgage = new Mortgage(
   loadedData.currentMortage.loan,
   loadedData.currentMortage.rate,
-  loadedData.currentMortage.woz
+  loadedData.currentMortage.woz,
 );
 
 const newMortgage = new Mortgage(
@@ -237,7 +237,7 @@ const newMortgage = new Mortgage(
   loadedData.newMortgage.woz,
 );
 
-const newCurrentMortgage = new Mortgage(0,0,0);
+const newCurrentMortgage = new Mortgage(0, 0, 0);
 
 const sell = reactive(loadedData.sell);
 const buy = reactive(loadedData.buy);
@@ -256,14 +256,14 @@ watch(
     const buyPercentage = (1 + (buy.agent + 2) / 100);
 
     newMortgage.loan = Math.round(
-      buy.amount * buyPercentage - sellCash - remainingMortgage + buy.misc + buy.bank + buy.notary
+      buy.amount * buyPercentage - sellCash - remainingMortgage + buy.misc + buy.bank + buy.notary,
     );
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 watch(
-  [ () => currentMortgage.values, () => sell.remainingMortgage],
+  [() => currentMortgage.values, () => sell.remainingMortgage],
   ([mortgage, remainder]) => {
     newCurrentMortgage.loan = remainder;
     newCurrentMortgage.rate = mortgage.rate;
@@ -273,7 +273,7 @@ watch(
 );
 
 const totalNettRate = computed(() =>
-  round(newMortgage.nettMonthly.value + newCurrentMortgage.nettMonthly.value, 2)
+  round(newMortgage.nettMonthly.value + newCurrentMortgage.nettMonthly.value, 2),
 );
 
 const saveData = () => {

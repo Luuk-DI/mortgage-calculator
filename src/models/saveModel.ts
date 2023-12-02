@@ -2,27 +2,27 @@ const STORAGE_KEY = 'mortgage';
 
 export interface SaveModel {
   currentMortage: {
-    loan: number,
-    rate: number,
-    woz: number,
-  },
+    loan: number;
+    rate: number;
+    woz: number;
+  };
   sell: {
-    amount: number,
-    agent: number,
-    remainingMortgage: number,
-  },
+    amount: number;
+    agent: number;
+    remainingMortgage: number;
+  };
   buy: {
-    amount: number,
-    agent: number,
-    bank: number,
-    notary: number,
-    misc: number,
-  },
+    amount: number;
+    agent: number;
+    bank: number;
+    notary: number;
+    misc: number;
+  };
   newMortgage: {
-    rate: number,
-    woz: number,
-  },
-  time?: number,
+    rate: number;
+    woz: number;
+  };
+  time?: number;
 }
 
 export const defaultSaveValues: SaveModel = {
@@ -66,7 +66,7 @@ export function loadSave() {
   if (stored != null) {
     return {
       ...defaultSaveValues,
-      ...(JSON.parse(stored) as SaveModel)
+      ...(JSON.parse(stored) as SaveModel),
     };
   } else {
     return defaultSaveValues;
