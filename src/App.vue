@@ -1,13 +1,6 @@
 <template>
   <header class="flex justify-center w-full pt-8 py-8">
     <div class="flex flex-col items-center">
-      <!--<img
-        alt="Vue logo"
-        src="./assets/logo.svg"
-        width="125"
-        height="125"
-      >-->
-
       <h1 class="text-center">
         Mortgage Calculator
       </h1>
@@ -16,13 +9,15 @@
 
   <main
     class="
-      flex flex-col md:max-w-4xl mx-auto p-8 m-8
+      flex flex-col max-w-2xl sm:max-w-4xl mx-auto p-8 m-8
       md:border border-y border-slate-200 md:rounded-md bg-slate-100
     "
   >
-    <div class="flex flex-row justify-evenly flex-wrap gap-y-8">
-      <div class="bg-slate-50 p-4 rounded-md w-min sm:w-max">
-        <h2>Selling</h2>
+    <div class="flex flex-row justify-evenly flex-wrap gap-8">
+      <ContentBox>
+        <template #title>
+          Selling
+        </template>
 
         <label for="sell_amount">Sell for</label>
         <input
@@ -50,12 +45,14 @@
           min="0"
           step="1000"
         />
-      </div>
+      </ContentBox>
 
-      <div class="bg-slate-50 p-4 rounded-md w-min sm:w-max">
-        <h2>Buying</h2>
+      <ContentBox>
+        <template #title>
+          Buying
+        </template>
 
-        <div class="flex flex-wrap gap-x-4">
+        <ColumnRow>
           <div class="flex flex-col">
             <label for="buy_amount">Buy for</label>
             <input
@@ -116,6 +113,7 @@
             <label for="buy_tax">Tax</label>
             <input
               id="buy_tax"
+              type="number"
               :value="buy.amount * 0.02"
               disabled
             />
@@ -129,17 +127,18 @@
               step="100"
             />
           </div>
-        </div>
-      </div>
+        </ColumnRow>
+      </ContentBox>
     </div>
 
     <HorizontalSeparator />
 
-    <div class="flex justify-evenly flex-wrap gap-y-8">
-      <div class="bg-slate-50 p-4 rounded-md w-min sm:w-max">
-        <h2>
+    <div class="flex justify-evenly flex-wrap gap-8">
+      <ContentBox>
+        <template #title>
           Current mortgage
-        </h2>
+        </template>
+
         <MortgageForm
           :mortgage="currentMortgage"
           name="Current"
@@ -147,11 +146,14 @@
           @update:rate="v => currentMortgage.rate = v"
           @update:woz="v => currentMortgage.woz = v"
         />
-      </div>
+      </ContentBox>
 
-      <div class="bg-slate-50 p-4 rounded-md w-min sm:w-max">
-        <h2>New mortgages</h2>
-        <div class="flex gap-4 flex-wrap">
+      <ContentBox>
+        <template #title>
+          New mortgages
+        </template>
+
+        <ColumnRow>
           <MortgageForm
             :mortgage="newMortgage"
             name="New"
@@ -167,14 +169,14 @@
             hide-woz
             disable-rate
           />
-        </div>
+        </ColumnRow>
 
         <HorizontalSeparator />
 
         <div class="block font-semibold">
           Total nett rate: €{{ totalNettRate }}
         </div>
-      </div>
+      </ContentBox>
     </div>
 
     <HorizontalSeparator />
@@ -213,11 +215,13 @@
 </script>
 
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue';
+import ContentBox from '@/components/ContentBox.vue';
 import HorizontalSeparator from '@/components/HorizontalSeparator.vue';
 import MortgageForm from '@/components/MortgageForm.vue';
 import { Mortgage, round } from '@/models/mortgage';
 import { loadSave, reloadSave, resetData, setSave } from '@/models/saveModel';
+import { computed, reactive, ref, watch } from 'vue';
+import ColumnRow from './components/ColumnRow.vue';
 
 const loadedData = loadSave();
 

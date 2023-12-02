@@ -18,8 +18,16 @@
         @apply text-lg font-semibold text-gray-900 mb-2;
     }
 
-    input {
+    input, input-like {
         @apply border border-slate-200 rounded-md py-1 px-2 mb-1 last:mb-0;
+    }
+
+    input:disabled {
+        @apply bg-gray-300/40 border-transparent;
+    }
+
+    input[type="number"] {
+        @apply w-36;
     }
 
     label, input {

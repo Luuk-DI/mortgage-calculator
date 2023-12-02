@@ -4,7 +4,7 @@
     <input
       :id="`${name}_loan`"
       :value="mortgage.loan"
-      :type="disableLoan ? 'text' : 'number'"
+      type="number"
       min="0"
       step="1000"
       :disabled="disableLoan"
@@ -15,7 +15,7 @@
     <input
       :id="`${name}_rate`"
       :value="mortgage.rate"
-      :type="disableRate ? 'text' : 'number'"
+      type="number"
       min="0"
       max="100"
       step="0.01"
