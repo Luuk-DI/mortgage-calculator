@@ -201,9 +201,15 @@
       </ContentBox>
     </div>
 
-    <HorizontalSeparator />
+    <HorizontalSeparator class="hidden md:block" />
 
-    <div class="w-full flex flex-wrap justify-center gap-8">
+    <div
+      class="
+        w-full flex flex-wrap justify-center
+        fixed bottom-0 left-0 right-0 bg-slate-300 p-3 gap-2
+        md:relative md:bottom-auto md:left-auto md:right-auto md:bg-transparent md:p-0 md:gap-8
+      "
+    >
       <button
         type="button"
         @click="e => { saveData(); (e.target as HTMLButtonElement).blur(); }"
@@ -227,7 +233,7 @@
     </div>
   </main>
 
-  <div class="w-full text-center italic text-sm mt-4">
+  <div class="w-full text-center italic text-sm mt-4 pb-24">
     Last save: {{ saveTime?.toLocaleString('en-GB') ?? "Not saved." }}
   </div>
 </template>
