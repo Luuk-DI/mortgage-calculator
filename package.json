@@ -10,13 +10,12 @@
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts --fix"
   },
   "dependencies": {
     "vue": "^3.3.9"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^2.1.4",
     "@rushstack/eslint-patch": "^1.6.0",
     "@stylistic/eslint-plugin": "^1.4.1",
     "@tsconfig/node20": "^20.1.2",
