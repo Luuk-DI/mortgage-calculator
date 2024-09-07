@@ -19,7 +19,7 @@
       </template>
 
       <div class="flex items-center">
-        <label>Include selling</label>
+        <label for="enable_selling">Include selling</label>
         <input
           id="enable_selling"
           v-model="sell.enabled"
@@ -74,7 +74,7 @@
           <div class="flex flex-col">
             <label for="buy_amount">Buy for</label>
             <input
-              id="but_amount"
+              id="buy_amount"
               v-model="buy.amount"
               type="number"
               min="0"
@@ -119,7 +119,7 @@
               step="100"
             />
 
-            <label for="buy_misc">Notary costs</label>
+            <label for="buy_notary">Notary costs</label>
             <input
               id="buy_notary"
               v-model="buy.notary"
