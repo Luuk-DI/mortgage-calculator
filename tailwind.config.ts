@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { Config } from 'tailwindcss';
+
+export default {
   content: ['./src/**/*.{vue,html}', './*.html'],
   theme: {
     screens: {
@@ -11,4 +12,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-};
+} satisfies Config;
