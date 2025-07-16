@@ -25,12 +25,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 10.13.1
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 22.x
-        cache: 'npm'
-    - run: npm ci --ignoreScripts
+        cache: 'pnpm'
+    - run: pnpm install
     - run: npm run build
     - name: Upload artifact to pages
       uses: actions/upload-pages-artifact@v3
