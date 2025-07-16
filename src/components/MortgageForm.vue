@@ -8,7 +8,7 @@
       min="0"
       step="1000"
       :disabled="disableLoan"
-      @input="e => emit('update:loan', getNumberFromEvent(e))"
+      @input="e => emit('update-loan', getNumberFromEvent(e))"
     />
 
     <label :for="`${name}_rate`">Interest rate</label>
@@ -20,7 +20,7 @@
       max="100"
       step="0.01"
       :disabled="disableRate"
-      @input="e => emit('update:rate', getNumberFromEvent(e))"
+      @input="e => emit('update-rate', getNumberFromEvent(e))"
     />
 
     <template v-if="!hideWoz">
@@ -31,7 +31,7 @@
         type="number"
         min="0"
         step="1000"
-        @input="e => emit('update:woz', getNumberFromEvent(e))"
+        @input="e => emit('update-woz', getNumberFromEvent(e))"
       />
     </template>
 
@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup vapor lang="ts">
 import type { Mortgage } from '@/models/mortgage';
 
 defineProps<{
@@ -57,9 +57,9 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  'update:loan': [value: number];
-  'update:rate': [value: number];
-  'update:woz': [value: number];
+  'update-loan': [value: number];
+  'update-rate': [value: number];
+  'update-woz': [value: number];
 }>();
 
 const getNumberFromEvent = (event: Event) => {

@@ -157,13 +157,15 @@
           Current mortgage
         </template>
 
-        <MortgageForm
-          :mortgage="currentMortgage"
-          name="Current"
-          @update:loan="v => currentMortgage.loan = v"
-          @update:rate="v => currentMortgage.rate = v"
-          @update:woz="v => currentMortgage.woz = v"
-        />
+        <template #default>
+          <MortgageForm
+            :mortgage="currentMortgage"
+            name="Current"
+            @update-loan="onUpdateCurrentLoan"
+            @update-rate="onUpdateCurrentRate"
+            @update-woz="onUpdateCurrentWoz"
+          />
+        </template>
       </ContentBox>
 
       <ContentBox>
@@ -177,8 +179,8 @@
             name="New"
             disable-loan
             :highlight-nett="!sell.enabled"
-            @update:rate="v => newMortgage.rate = v"
-            @update:woz="v => newMortgage.woz = v"
+            @update-rate="onUpdateRate"
+            @update-woz="onUpdateWoz"
           />
 
           <MortgageForm
@@ -238,11 +240,7 @@
   </div>
 </template>
 
-<script lang="ts">
-
-</script>
-
-<script setup lang="ts">
+<script setup vapor lang="ts">
 import ContentBox from '@/components/ContentBox.vue';
 import HorizontalSeparator from '@/components/HorizontalSeparator.vue';
 import MortgageForm from '@/components/MortgageForm.vue';
@@ -264,6 +262,26 @@ const newMortgage = new Mortgage(
   loadedData.newMortgage.rate,
   loadedData.newMortgage.woz,
 );
+
+const onUpdateCurrentLoan = (newLoan: number) => {
+  currentMortgage.loan = newLoan;
+};
+
+const onUpdateCurrentRate = (newRate: number) => {
+  currentMortgage.rate = newRate;
+};
+
+const onUpdateCurrentWoz = (newWoz: number) => {
+  currentMortgage.woz = newWoz;
+};
+
+const onUpdateRate = (newRate: number) => {
+  newMortgage.rate = newRate;
+};
+
+const onUpdateWoz = (newWoz: number) => {
+  newMortgage.woz = newWoz;
+};
 
 const newCurrentMortgage = new Mortgage(0, 0, 0);
 

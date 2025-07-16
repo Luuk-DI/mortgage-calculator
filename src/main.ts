@@ -1,6 +1,6 @@
-import { createApp } from 'vue';
+import { createVaporApp, type VaporComponent } from 'vue';
 import App from './App.vue';
 
 import './index.css';
 
-createApp(App).mount('#app');
+createVaporApp(App as VaporComponent).mount('#app');
