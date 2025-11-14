@@ -1,0 +1,7 @@
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+- "vue"
+- "@vue/*"
+
+overrides:
+  "vite": "npm:rolldown-vite@7.2.4"
