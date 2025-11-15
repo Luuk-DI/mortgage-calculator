@@ -1,9 +1,12 @@
 <template>
   <header class="flex justify-center w-full pt-8 py-8">
     <div class="flex flex-col items-center">
-      <h1 class="text-center">
+      <h1 class="text-center mb-1">
         Mortgage Calculator
       </h1>
+      <h3 class="italic">
+        for The Netherlands
+      </h3>
     </div>
   </header>
 
