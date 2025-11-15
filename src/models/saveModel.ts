@@ -29,7 +29,7 @@ export interface SaveModel {
 export const defaultSaveValues: SaveModel = {
   currentMortage: {
     loan: 150_000,
-    rate: 5,
+    rate: 4,
     woz: 250_000,
   },
   sell: {
@@ -46,7 +46,7 @@ export const defaultSaveValues: SaveModel = {
     misc: 5000,
   },
   newMortgage: {
-    rate: 5,
+    rate: 4,
     woz: 500_000,
   },
 };
@@ -65,14 +65,14 @@ export function setSave(data: SaveModel) {
 export function loadSave() {
   const stored = localStorage.getItem(STORAGE_KEY);
 
-  if (stored != null) {
-    return {
-      ...defaultSaveValues,
-      ...(JSON.parse(stored) as SaveModel),
-    };
-  } else {
+  if (stored == null) {
     return defaultSaveValues;
   }
+
+  return {
+    ...defaultSaveValues,
+    ...(JSON.parse(stored) as SaveModel),
+  };
 }
 
 export function reloadSave() {
