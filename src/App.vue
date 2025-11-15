@@ -1,6 +1,6 @@
 <template>
-  <header class="flex justify-center w-full pt-8 py-8">
-    <div class="flex flex-col items-center">
+  <header class="flex justify-center w-full py-6">
+    <div class="flex flex-col items-center mb-2">
       <h1 class="text-center mb-1">
         Mortgage Calculator
       </h1>
@@ -12,27 +12,46 @@
 
   <main
     class="
-      flex flex-col max-w-2xl sm:max-w-4xl mx-auto p-8 m-8
+      relative flex flex-col max-w-2xl sm:max-w-4xl mx-auto p-4 sm:p-8
       md:border border-y border-slate-200 md:rounded-md bg-slate-100
     "
   >
-    <ContentBox>
-      <template #title>
-        Settings
-      </template>
+    <IconButton
+      v-if="!showSettings"
+      class="absolute right-0 top-0 z-10"
+      @click="showSettings = true"
+    >
+      ⚙️
+    </IconButton>
 
-      <div class="flex items-center">
-        <label for="enable_selling">Include selling</label>
-        <input
-          id="enable_selling"
-          v-model="sell.enabled"
-          type="checkbox"
-          class="ml-2"
-        />
-      </div>
-    </ContentBox>
+    <template v-if="showSettings">
+      <ContentBox>
+        <template #title>
+          Settings
+        </template>
 
-    <HorizontalSeparator />
+        <IconButton
+          class="absolute right-1 top-1 z-10 hover:*:invert focus:*:invert"
+          @click="showSettings = false"
+        >
+          <span class="grayscale">
+            ❌
+          </span>
+        </IconButton>
+
+        <div class="flex items-center">
+          <label for="enable_selling">Include selling</label>
+          <input
+            id="enable_selling"
+            v-model="sell.enabled"
+            type="checkbox"
+            class="ml-2"
+          />
+        </div>
+      </ContentBox>
+
+      <HorizontalSeparator />
+    </template>
 
     <div class="flex flex-row justify-evenly flex-wrap gap-8">
       <ContentBox v-if="sell.enabled">
@@ -252,6 +271,7 @@ import { Mortgage, round } from '@/models/mortgage';
 import { loadSave, reloadSave, resetData, setSave } from '@/models/saveModel';
 import { computed, reactive, ref, watch } from 'vue';
 import ColumnRow from './components/ColumnRow.vue';
+import IconButton from './components/IconButton.vue';
 
 const loadedData = loadSave();
 
@@ -341,4 +361,6 @@ const saveData = () => {
     },
   });
 };
+
+const showSettings = ref(true);
 </script>
