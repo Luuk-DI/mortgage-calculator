@@ -1,16 +1,14 @@
 # mortgage-calculator
 
-Welcome.
+Welcome to a mortgage calculator in Vue Vapor. The latest version can be checked out at: https://luuk-di.github.io/mortgage-calculator/
 
 ## Recommended IDE Setup
 
 See `.vscode/extensions.json`.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
 ## Project Setup
+
+Ensure you have pnpm enabled in corepack, then run:
 
 ```sh
 pnpm i
