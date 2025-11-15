@@ -1,6 +1,7 @@
 const STORAGE_KEY = 'mortgage';
 
 export interface SaveModel {
+  showSettings: boolean;
   currentMortage: {
     loan: number;
     rate: number;
@@ -27,6 +28,7 @@ export interface SaveModel {
 }
 
 export const defaultSaveValues: SaveModel = {
+  showSettings: true,
   currentMortage: {
     loan: 150_000,
     rate: 4,

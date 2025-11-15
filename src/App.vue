@@ -275,6 +275,8 @@ import IconButton from './components/IconButton.vue';
 
 const loadedData = loadSave();
 
+const showSettings = ref(loadedData.showSettings);
+
 const currentMortgage = new Mortgage(
   loadedData.currentMortage.loan,
   loadedData.currentMortage.rate,
@@ -352,6 +354,7 @@ const totalNettRate = computed(() =>
 
 const saveData = () => {
   saveTime.value = setSave({
+    showSettings: showSettings.value,
     currentMortage: currentMortgage.values,
     sell,
     buy,
@@ -361,6 +364,4 @@ const saveData = () => {
     },
   });
 };
-
-const showSettings = ref(true);
 </script>
