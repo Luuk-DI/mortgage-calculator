@@ -243,7 +243,8 @@
   </div>
 </template>
 
-<script setup vapor lang="ts">
+<!-- Is temporarily generic to fix createVapor typing. -->
+<script setup vapor lang="ts" generic="T">
 import ContentBox from '@/components/ContentBox.vue';
 import HorizontalSeparator from '@/components/HorizontalSeparator.vue';
 import MortgageForm from '@/components/MortgageForm.vue';
