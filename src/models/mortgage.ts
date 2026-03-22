@@ -77,7 +77,7 @@ export class Mortgage {
 
   private findMonthlyRate() {
     let monthly = (this.loan / 360) + this.interest / 10;
-    let remainder = 0;
+    let remainder;
     let steps = 0;
 
     do {
